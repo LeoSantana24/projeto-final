@@ -14,7 +14,7 @@ header {
 
 .restaurant-info {
     flex: 2; /* Ocupa 2 vezes mais espaço que a imagem */
-    max-width: 600px; /* Largura máxima para o texto */
+    max-width: 500px; /* Largura máxima para o texto */
     padding: 20px; /* Adiciona um espaçamento interno ao redor do conteúdo */
     text-align: justify; /* Alinha o texto justificado */
 }
@@ -35,7 +35,7 @@ header {
 
 .restaurant-image img {
     width: 100%; /* Imagem ocupará todo o espaço disponível */
-    max-width: 800px; /* Define uma largura máxima maior para a imagem */
+    max-width: 600px; /* Define uma largura máxima maior para a imagem */
     height: auto;
 }
 
