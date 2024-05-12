@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.restaurant-info {
+    flex: 2; /* Ocupa 2 vezes mais espaço que a imagem */
+    max-width: 600px; /* Largura máxima para o texto */
+    padding: 20px; /* Adiciona um espaçamento interno ao redor do conteúdo */
+    text-align: justify; /* Alinha o texto justificado */
+}
+
+.restaurant-info h1 {
+    margin-bottom: 10px; /* Adiciona um pequeno espaço abaixo do título */
+}
+
+.restaurant-info p {
+    margin-bottom: 25px; /* Adiciona um espaçamento maior abaixo do parágrafo */
+}
+
+
+.restaurant-image {
+    flex: 3; /* Ocupa 3 vezes menos espaço que o texto */
+    text-align: center; /* Centraliza a imagem */
+}
+
+.restaurant-image img {
+    width: 100%; /* Imagem ocupará todo o espaço disponível */
+    max-width: 800px; /* Define uma largura máxima maior para a imagem */
+    height: auto;
+}
+
+
+
+.menu-photos {
+    padding: 20px;
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.photo-slider {
+    display: flex;
+    justify-content: center; /* Centraliza as fotos */
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.photo-slider img {
+    max-width: 400px; /* Torna as imagens dos pratos maiores */
+    height: auto;
+}
+
+
+.reservation-form {
+    max-width: 600px; /* Define a largura máxima do formulário */
+    margin: 0 auto; /* Centraliza o formulário na tela */
+    padding: 20px;
+    background-color: #f9f9f9; /* Adiciona um fundo para o formulário */
+    border-radius: 10px; /* Adiciona cantos arredondados */
+}
+
+.reservation-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.reservation-form input[type="number"],
+.reservation-form input[type="date"],
+.reservation-form input[type="time"],
+.reservation-form button {
+    width: calc(100% - 20px); /* Ajusta a largura dos inputs e botão */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd; /* Adiciona uma borda aos inputs */
+    border-radius: 5px; /* Adiciona cantos arredondados */
+}
+
+.reservation-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.reservation-form button:hover {
+    background-color: #45a049;
+}

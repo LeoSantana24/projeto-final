@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>Sal Island Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -58,11 +58,11 @@
             <form action="#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="name">Name</label>
+                  <label class="text-black font-weight-bold" for="name">Nome</label>
                   <input type="text" id="name" class="form-control ">
                 </div>
                 <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="phone">Phone</label>
+                  <label class="text-black font-weight-bold" for="phone">Telefone</label>
                   <input type="text" id="phone" class="form-control ">
                 </div>
               </div>
@@ -76,18 +76,18 @@
 
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="checkin_date">Date Check In</label>
+                  <label class="text-black font-weight-bold" for="checkin_date">Data entrada</label>
                   <input type="text" id="checkin_date" class="form-control">
                 </div>
                 <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="checkout_date">Date Check Out</label>
+                  <label class="text-black font-weight-bold" for="checkout_date">Data saida</label>
                   <input type="text" id="checkout_date" class="form-control">
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label for="adults" class="font-weight-bold text-black">Adults</label>
+                  <label for="adults" class="font-weight-bold text-black">Adultos</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                     <select name="" id="adults" class="form-control">
@@ -116,7 +116,7 @@
 
               <div class="row mb-4">
                 <div class="col-md-12 form-group">
-                  <label class="text-black font-weight-bold" for="message">Notes</label>
+                  <label class="text-black font-weight-bold" for="message">Notas</label>
                   <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
                 </div>
               </div>
@@ -131,8 +131,8 @@
           <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
             <div class="row">
               <div class="col-md-10 ml-auto contact-info">
-                <p><span class="d-block">Address:</span> <span class="text-black"> 98 West 21th Street, Suite 721 New York NY 10016</span></p>
-                <p><span class="d-block">Phone:</span> <span class="text-black"> (+238) 984 25 80</span></p>
+                <p><span class="d-block">Endereço:</span> <span class="text-black"> 98 West 21th Street, Suite 721 New York NY 10016</span></p>
+                <p><span class="d-block">Telefone:</span> <span class="text-black"> (+238) 984 25 80</span></p>
                 <p><span class="d-block">Email:</span> <span class="text-black"> info@salislandhotel.com</span></p>
               </div>
             </div>
