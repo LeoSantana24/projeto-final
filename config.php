@@ -11,7 +11,7 @@
 
     //if($conexao->connect_errno)
     //{
-        echo "Falha na conexão";
+       // echo "Falha na conexão";
     //}
     //else
     //{

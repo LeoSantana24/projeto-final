@@ -34,18 +34,18 @@
     
     
     <div class="wrapper">
-        <form action="">
+        <form action="testLogin.php" method="POST">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="email" placeholder="name@example.com" required>
+                <input type="email" name="email" id="email" placeholder="name@example.com" required>
                 <i class='bx bxs-envelope'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="*************" required>
+                <input type="password"name="senha" id="senha" placeholder="*************" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
         
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" name="submit" id="submit" class="btn">Login</button>
             
         </form>
     </div>

@@ -1,10 +1,42 @@
 <?php
 
-if(isset($POST['submit']))
+if(isset($_POST['submit']))
 {
-  print_r($POST['nome']);
-  print_r($POST['email']);
-  print_r($POST['telefone']);
+  
+  //print_r('<br>');
+  //print_r('<br>');
+  //print_r('<br>');
+  //print_r('Nome:' . $_POST['nome']);
+  //print_r('<br>');
+  //print_r('Email:' . $_POST['email']);
+  //print_r('<br>');
+  //print_r('Telefone:' . $_POST['telefone']);
+  //print_r('<br>');
+  //print_r('Sexo:' . $_POST['sexo']);
+  //print_r('<br>');
+  //print_r('Data de Nascimento:' . $_POST['data_nascimento']);
+  //print_r('<br>');
+  //print_r('Pais:' . $_POST['pais']);
+  //print_r('<br>');
+  //print_r('senha:' . $_POST['senha']);
+
+
+  include_once('config.php');
+
+
+  $nome = $_POST['nome_completo'];
+  $email = $_POST['email'];
+  $telefone = $_POST['telefone'];
+  $sexo = $_POST['genero'];
+  $data_nasc = $_POST['data_nascimento'];
+  $pais = $_POST['pais']
+  $senha = $_POST['senha'];
+ 
+  
+
+
+  $result = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo,email,telefone,sexo,data_nasc,pais,senha)
+  VALUES('$nome','$email','$telefone','$sexo','$data_nasc','$pais','$senha')");
 }
 
 
@@ -48,15 +80,15 @@ if(isset($POST['submit']))
     <form action="registar.php" method="POST">
         <h1>Registar</h1>
         <div class="input-box">
-            <input type="text" placeholder="Nome Completo" required>
+            <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
             <i class='bx bx-user'></i>
         </div>
         <div class="input-box">
-            <input type="email" placeholder="Email" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
             <i class='bx bxs-envelope'></i>
         </div>
         <div class="input-box">
-            <input type="tel" placeholder="Telefone" required>
+            <input type="tel" name="telefone" id="telefone" placeholder="Telefone" required>
             <i class="fi fi-rr-phone-call"></i>
         </div>
        
@@ -65,22 +97,24 @@ if(isset($POST['submit']))
         <label for="feminino">Feminino</label>
         <input type="radio" id="masculino" name="genero" value="masculino" required>
         <label for="masculino">Masculino</label>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" id="data_nascimento" required>
         
         <div class="input-box">
-            <input type="text" placeholder="País" required>
+            <input type="text" name="pais" id="pais" placeholder="País" required>
         
         </div>
         
         <div class="input-box">
-            <input type="password" placeholder="Senha" required>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
             <i class='bx bxs-lock-alt' ></i>
         </div>
         <div class="input-box">
-            <input type="password" placeholder="Confirmar Senha" required>
+            <input type="password" name="confirmarsenha" id="senha" placeholder="Confirmar Senha" required>
             <i class='bx bxs-lock-alt' ></i>
         </div>
     
-        <button type="submit" class="btn">Registar</button>
+        <button type="submit" name="submit" id="submit" class="btn">Registar</button>
         
     </form>
 </div>
