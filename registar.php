@@ -1,3 +1,14 @@
+<?php
+
+if(isset($POST['submit']))
+{
+  print_r($POST['nome']);
+  print_r($POST['email']);
+  print_r($POST['telefone']);
+}
+
+
+?>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -34,29 +45,45 @@
     
     
     <div class="wrapper">
-        <form action="">
-            <h1>Registar</h1>
-            <div class="input-box">
-                <input type="text" placeholder="Nome Completo" required>
-                <i class='bx bx-user'></i>
-            </div>
-            <div class="input-box">
-                <input type="email" placeholder="Email" required>
-                <i class='bx bxs-envelope'></i>
-            </div>
-            <div class="input-box">
-                <input type="tel" placeholder="Telefone" required>
-                <i class="fi fi-rr-phone-call"></i>
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Senha" required>
-                <i class='bx bxs-lock-alt' ></i>
-            </div>
+    <form action="registar.php" method="POST">
+        <h1>Registar</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Nome Completo" required>
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="email" placeholder="Email" required>
+            <i class='bx bxs-envelope'></i>
+        </div>
+        <div class="input-box">
+            <input type="tel" placeholder="Telefone" required>
+            <i class="fi fi-rr-phone-call"></i>
+        </div>
+       
+        <p>Sexo</p>
+        <input type="radio" id="feminino" name="genero" value="feminino" required>
+        <label for="feminino">Feminino</label>
+        <input type="radio" id="masculino" name="genero" value="masculino" required>
+        <label for="masculino">Masculino</label>
         
-            <button type="submit" class="btn">Registar</button>
-            
-        </form>
-    </div>
+        <div class="input-box">
+            <input type="text" placeholder="País" required>
+        
+        </div>
+        
+        <div class="input-box">
+            <input type="password" placeholder="Senha" required>
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Confirmar Senha" required>
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+    
+        <button type="submit" class="btn">Registar</button>
+        
+    </form>
+</div>
 
 
    
