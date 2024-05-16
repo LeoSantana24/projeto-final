@@ -33,7 +33,7 @@
 
         <!-- Custom styles for this template-->
         <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/adm.css" rel="stylesheet">
         
         <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -83,7 +83,7 @@
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="index.php?pag=<?php echo $menu1 ?>">Mecanicos</a>
+                            <a class="collapse-item" href="index.php?pag=<?php echo $menu1 ?>">Recepcionistas</a>
                             <a class="collapse-item" href="index.php?pag=<?php echo $menu2 ?>">Menu 2</a>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?pag=<?php echo $menu6 ?>">
                         <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Menu 6</span></a>
+                        <span>Dados Estatísticos</span></a>
                 </li>
 
                 <!-- Nav Item - Tables -->
