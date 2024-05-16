@@ -34,7 +34,7 @@
     
     
     <div class="wrapper">
-        <form action="testLogin.php" method="POST">
+        <form action="database/login.php" method="POST">
             <h1>Login</h1>
             <div class="input-box">
                 <input type="email" name="email" id="email" placeholder="name@example.com" required>

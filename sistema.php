@@ -1,13 +1,12 @@
 <?php
-    session_start()
+    session_start();
     //print_r($_SESSION);
-    if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
+    if((!isset($_SESSION['email'])))
     {
-        unset($_SESSION['email']);
-        unset($_SESSION['senha']);
         header('Location: login.php');
     }
     $logado = $_SESSION['email'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +15,7 @@
     <title>SISTEMA</title>
 </head>
 <body>
-    <h1>Acessou o sistema</h1>
+    <h1>Acessou o sistema <?php echo $_SESSION['email']; ?></h1>
+
 </body>
 </html>

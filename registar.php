@@ -1,46 +1,4 @@
-<?php
 
-if(isset($_POST['submit']))
-{
-  
-  //print_r('<br>');
-  //print_r('<br>');
-  //print_r('<br>');
-  //print_r('Nome:' . $_POST['nome']);
-  //print_r('<br>');
-  //print_r('Email:' . $_POST['email']);
-  //print_r('<br>');
-  //print_r('Telefone:' . $_POST['telefone']);
-  //print_r('<br>');
-  //print_r('Sexo:' . $_POST['sexo']);
-  //print_r('<br>');
-  //print_r('Data de Nascimento:' . $_POST['data_nascimento']);
-  //print_r('<br>');
-  //print_r('Pais:' . $_POST['pais']);
-  //print_r('<br>');
-  //print_r('senha:' . $_POST['senha']);
-
-
-  include_once('config.php');
-
-
-  $nome = $_POST['nome_completo'];
-  $email = $_POST['email'];
-  $telefone = $_POST['telefone'];
-  $sexo = $_POST['genero'];
-  $data_nasc = $_POST['data_nascimento'];
-  $pais = $_POST['pais']
-  $senha = $_POST['senha'];
- 
-  
-
-
-  $result = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo,email,telefone,sexo,data_nasc,pais,senha)
-  VALUES('$nome','$email','$telefone','$sexo','$data_nasc','$pais','$senha')");
-}
-
-
-?>
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -77,7 +35,7 @@ if(isset($_POST['submit']))
     
     
     <div class="wrapper">
-    <form action="registar.php" method="POST">
+    <form action="database/registar.php" method="POST">
         <h1>Registar</h1>
         <div class="input-box">
             <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
