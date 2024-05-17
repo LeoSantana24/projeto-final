@@ -11,7 +11,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-  --blue: #4e73df;
+  --blue: #1e96fc;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -29,7 +29,7 @@
   --success: #1cc88a;
   --info: #36b9cc;
   --warning: #f6c23e;
-  --danger: #e74a3b;
+  --danger: #1e96fc;
   --light: #f8f9fc;
   --dark: #5a5c69;
   --breakpoint-xs: 0;
@@ -6254,7 +6254,7 @@ button.bg-warning:focus {
 }
 
 .bg-danger {
-  background-color: #e74a3b !important;
+  background-color: #1e96fc !important;
 }
 
 a.bg-danger:hover, a.bg-danger:focus,

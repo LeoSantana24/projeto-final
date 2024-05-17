@@ -2,7 +2,7 @@
 
     //variaveis para o menu
     $pag = @$_GET["pag"];
-    $menu1 = "menu1";
+    $menu1 = "recepcionistas";
     $menu2 = "menu2";
     $menu3 = "menu3";
     $menu4 = "menu4";
@@ -163,7 +163,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nome do usuario</span>
-                                    <img class="img-profile rounded-circle" src="../img/sem-foto.jpg">
+                                    <img class="img-profile rounded-circle" src="../images/sem-foto.jpg">
 
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -193,7 +193,7 @@
                         @include_once("home.php"); 
                         
                         } else if (@$pag==$menu1) {
-                        @include_once("mecanicos.php");
+                        @include_once("recepcionista.php");
                         
                         } else if (@$pag==$menu2) {
                         @include_once(@$menu2.".php");

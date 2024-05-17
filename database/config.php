@@ -1,14 +1,15 @@
 <?php
 
-    $dbHost = 'localhost';
-    $dbUsername = 'root';
-    $dbPassword = '';
-    $dbName = 'cadastro';
+    //$dbHost = 'localhost';
+    //$dbUsername = 'root';
+    //$dbPassword = '';
+    //$dbName = 'cadastro';
 
-    $conexao = new mysqli($dbHost,$dbUsername,$dbPassword,$dbName);
-
-
-
+    //$conexao = new mysqli($servidor,$usuario,$senha,$banco);
+    $servidor = 'localhost';
+    $usuario = 'root';
+    $senha = '';
+    $banco = 'cadastro';
     //if($conexao->connect_errno)
     //{
        // echo "Falha na conexão";
