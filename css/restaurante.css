@@ -12,34 +12,29 @@ header {
     background-color: #f0f0f0;
 }
 
-.restaurant-info {
-    flex: 2; /* Ocupa 2 vezes mais espaço que a imagem */
-    max-width: 500px; /* Largura máxima para o texto */
-    padding: 20px; /* Adiciona um espaçamento interno ao redor do conteúdo */
-    text-align: justify; /* Alinha o texto justificado */
-}
-
 .restaurant-info h1 {
     margin-bottom: 10px; /* Adiciona um pequeno espaço abaixo do título */
 }
 
-.restaurant-info p {
-    margin-bottom: 25px; /* Adiciona um espaçamento maior abaixo do parágrafo */
+.restaurant-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* Ajuste o espaçamento entre a imagem e o texto conforme necessário */
 }
 
+.restaurant-info {
+    flex: 2; /* Permite que o texto ocupe mais espaço */
+}
 
 .restaurant-image {
-    flex: 3; /* Ocupa 3 vezes menos espaço que o texto */
-    text-align: center; /* Centraliza a imagem */
+    flex: 1; /* Permite que a imagem ocupe menos espaço */
+    max-width: 40%; /* Limita a largura da imagem */
 }
 
 .restaurant-image img {
-    width: 100%; /* Imagem ocupará todo o espaço disponível */
-    max-width: 600px; /* Define uma largura máxima maior para a imagem */
-    height: auto;
+    width: 100%;
+    height: auto; /* Garante que a imagem mantenha suas proporções */
 }
-
-
 
 .menu-photos {
     padding: 20px;
@@ -57,7 +52,6 @@ header {
     max-width: 400px; /* Torna as imagens dos pratos maiores */
     height: auto;
 }
-
 
 .reservation-form {
     max-width: 600px; /* Define a largura máxima do formulário */
@@ -81,6 +75,14 @@ header {
     margin-bottom: 10px;
     border: 1px solid #ddd; /* Adiciona uma borda aos inputs */
     border-radius: 5px; /* Adiciona cantos arredondados */
+}
+
+.reservation-form textarea {
+    width: calc(100% - 20px); /* Ajusta a largura do textarea */
+    padding: 10px;
+    border: 1px solid #ddd; /* Adiciona uma borda ao textarea */
+    border-radius: 5px; /* Adiciona cantos arredondados */
+    resize: vertical; /* Permite redimensionar verticalmente */
 }
 
 .reservation-form button {

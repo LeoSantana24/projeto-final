@@ -17,7 +17,7 @@
 
         $sql = "SELECT *FROM usuarios WHERE email = '$email' and senha = '$senha'";
 
-        $result = $conexao->query($sql);
+        $result = $conn->query($sql);
 
         if(mysqli_num_rows($result) < 1)
         {
