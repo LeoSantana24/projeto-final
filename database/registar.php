@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
   $senha = $_POST['senha'];
  
   echo 'Senha: '.$senha;
-  $password = $senha;
+  $password = password_hash($senha,PASSWORD_DEFAULT);
   $res = registar($nome, $email, $telefone, $genero, $data_nasc, $password);
 
   //print_r($res);
