@@ -49,19 +49,15 @@
             <input type="tel" name="telefone" id="telefone" placeholder="Telefone" required>
             <i class="fi fi-rr-phone-call"></i>
         </div>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" id="data_nascimento" required>
        
-        <p>Sexo</p>
+        <p>Sexo:</p>
         <input type="radio" id="feminino" name="genero" value="feminino" required>
         <label for="feminino">Feminino</label>
         <input type="radio" id="masculino" name="genero" value="masculino" required>
         <label for="masculino">Masculino</label>
-        <label for="data_nascimento">Data de Nascimento:</label>
-        <input type="date" name="data_nascimento" id="data_nascimento" required>
         
-        <div class="input-box">
-            <input type="text" name="pais" id="pais" placeholder="País" required>
-        
-        </div>
         
         <div class="input-box">
             <input type="password" name="senha" id="senha" placeholder="Senha" required>
