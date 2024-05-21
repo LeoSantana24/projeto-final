@@ -12,11 +12,49 @@ require_once("../database/config.php");
 ?>
 
 <div class="row mt-4 mb-4">
-    <a type="button" class="btn-primary btn-sm ml-3 d-none d-md-block" href="index.php?pag=<?php echo $pag ?>&funcao=novo">Novo Recepcionista</a>
-    <a type="button" class="btn-primary btn-sm ml-3 d-block d-sm-none" href="index.php?pag=<?php echo $pag ?>&funcao=novo">+</a>
-    
+  <a type="button" class="btn-primary btn-sm ml-3 d-none d-md-block" href="novorecep.php?pag=<?php echo $pag ?>&funcao=novo">Novo Recepcionista</a>
+  <a type="button" class="btn-primary btn-sm ml-3 d-block d-sm-none" href="novorecep.php?pag=<?php echo $pag ?>&funcao=novo">+</a>
 </div>
 
+<!--Método para criar um novo recepcionista-->
+<?php
+
+if (@$_GET['funcao'] == 'novo') {
+  echo '<h2>Novo Recepcionista</h2>';
+  echo '<form method="post" action="index.php?pag=' . $pag . '&funcao=inserir">';
+  // Add input fields for receptionist details (name, identification, phone, email, address)
+  echo '<input type="text" name="nome" placeholder="Nome" required>';
+  echo '<input type="text" name="Nidentificação" placeholder="N.Identificação" required>';
+  echo '<input type="text" name="telefone" placeholder="Telefone" required>';
+  echo '<input type="email" name="email" placeholder="Email" required>';
+  echo '<textarea name="endereço" placeholder="Endereço" required></textarea>';
+  echo '<button type="submit" name="btn-salvar">Salvar</button>';
+  echo '</form>';
+} else if (@$_GET['funcao'] == 'inserir') {
+  // Process the form submission and insert a new receptionist into the database
+  if (isset($_POST['nome']) && isset($_POST['Nidentificação']) && isset($_POST['telefone']) && isset($_POST['email']) && isset($_POST['endereço'])) {
+    $nome = $_POST['nome'];
+    $Nidentificação = $_POST['Nidentificação'];
+    $telefone = $_POST['telefone'];
+    $email = $_POST['email'];
+    $endereço = $_POST['endereço'];
+
+    // Conexão com o banco de dados
+   // $conn = new PDO('mysql:host=localhost;dbname=recepcionistas', 'username', 'password');
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Novo recepcionista no banco
+    $sql = "INSERT INTO recepcionistas (nome, Nidentificação, telefone, email, endereço) VALUES (:nome, :Nidentificação, :telefone, :email, :endereço)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(['nome' => $nome, 'Nidentificação' => $Nidentificação, 'telefone' => $telefone, 'email' => $email, 'endereço' => $endereço]);
+
+    // Redirecionamento 
+    header('Location: index.php?pag=' . $pag . '&funcao=listar&success=1');
+    exit;
+  }
+}
+
+?>
 
 
 <!-- DataTales Example -->
@@ -171,7 +209,7 @@ require_once("../database/config.php");
 
                 <p>Deseja realmente Excluir este Registro?</p>
 
-                <div align="center" id="mensagem_excluir" class="">
+                <div id="mensagem_excluir" class="" style="align-items: center;">
 
                 </div>
 
