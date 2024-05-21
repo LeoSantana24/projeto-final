@@ -47,11 +47,13 @@
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="index.php">Home</a></li>
-                        <li><a href="rooms.php">Rooms</a></li>
-                        <li><a href="about.php">About</a></li>
-                        <li><a href="events.php">Events</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                        <li><a href="reservation.php">Reservation</a></li>
+                        <li><a href="rooms.php">QUARTOS</a></li>
+                        <li><a href="about.php">DESCUBRA A ILHA DO SAL</a></li>
+                        <li><a href="events.php">EVENTOS</a></li>
+                        <li><a href="#">SERVIÇOS</a></li>
+                        <li><a href="restaurante.php">RESTAURANTE</a></li>
+                        <li><a href="contact.php">CONTATO</a></li>
+                        <li><a href="reservation.php">RESERVA</a></li>
                       </ul>
                     </div>
                   </div>
