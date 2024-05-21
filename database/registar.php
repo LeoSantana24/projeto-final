@@ -27,13 +27,13 @@ if(isset($_POST['submit']))
   $nome = $_POST['nome_completo'];
   $email = $_POST['email'];
   $telefone = $_POST['telefone'];
-  $genero = $_POST['genero'];
   $data_nasc = $_POST['data_nascimento'];
-  $pais = $_POST['pais'];
+  $genero = $_POST['genero'];
   $senha = $_POST['senha'];
  
-
-  $res = registar($nome, $email, $telefone, $genero, $data_nasc, $pais, $senha);
+  echo 'Senha: '.$senha;
+  $password = $senha;
+  $res = registar($nome, $email, $telefone, $genero, $data_nasc, $password);
 
   //print_r($res);
   

@@ -1,6 +1,6 @@
 <?php 
 $pag = "recepcionista";
-require_once("../database/config.php"); 
+require_once("../database/conexao.php"); 
 //@session_start();
     //verificar se o usuário está autenticado
 //if(@$_SESSION['id_usuario'] == null || @$_SESSION['nivel_usuario'] != 'Admin'){
@@ -41,7 +41,7 @@ require_once("../database/config.php");
 
                    <?php 
 
-                   $query = $pdo->query("SELECT * FROM recepcionistas order by id desc ");
+                   $query = $pdo->query("SELECT * FROM recepcionista order by id desc ");
                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
                    for ($i=0; $i < count($res); $i++) { 
@@ -49,7 +49,7 @@ require_once("../database/config.php");
                       }
 
                       $nome = $res[$i]['nome'];
-                      $Nidentificação = $res[$i]['N-identificação'];
+                      $n_identificação = $res[$i]['n_identificação'];
                       $telefone = $res[$i]['telefone'];
                       $email = $res[$i]['email']; 
                       $endereço = $res[$i]['endereço']; 
@@ -61,7 +61,7 @@ require_once("../database/config.php");
 
                     <tr>
                         <td><?php echo $nome ?></td>
-                        <td><?php echo $Nidentificação ?></td>
+                        <td><?php echo $n_identificação ?></td>
                         <td><?php echo $telefone ?></td>
                         <td><?php echo $email ?></td>
                         <td><?php echo $endereço ?></td>

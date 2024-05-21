@@ -10,7 +10,7 @@ try{
     $conn = mysqli_connect($servidor,$usuario, $senha, $banco);
 }catch (Exception $e){
 
-    echo "Erro ao conectar com o banco de dados! .$e;"
+    echo "Erro ao conectar com o banco de dados! .$e";
 }
 
 ?>
