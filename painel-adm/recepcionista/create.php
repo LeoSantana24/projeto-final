@@ -23,7 +23,7 @@
     $email =  $_POST["email"];
     $phone =  $_POST["phone"];
     $address =  $_POST["address"];
-
+ // Campos
     do{
         if(empty($name) || empty($email) || empty($phone) || empty($address)){
             $errorMessage = "Todos os campos são obrigatórios";
