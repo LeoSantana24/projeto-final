@@ -55,8 +55,8 @@
         <td>$row[address]</td>
         <td>$row[create_at]</td>
         <td>
-          <a href='recepcionista/edit.php?id=$row[id]' class='btn btn-primary btn-sm'>Editar</a>
-          <a href='/projeto-final/delete.php?id=$row[id]' class='btn btn-danger btn-sm'>Excluir</a>
+          <a href='../recepcionista/edit.php?id=$row[id]' class='btn btn-primary btn-sm'>Editar</a>
+          <a href='../recepcionista/delete.php?id=$row[id]' class='btn btn-danger btn-sm'>Excluir</a>
         </td>
       </tr>
       ";
