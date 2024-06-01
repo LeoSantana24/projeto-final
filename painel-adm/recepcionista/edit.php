@@ -16,7 +16,7 @@
   
 
     $errorMessage = "";
-    $successMessage = "";
+    $successMessage = true;
 
     if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(!isset($_GET["id"])){
@@ -30,7 +30,7 @@
         $row = $result->fetch_assoc();
 
         if($row){
-            header("location: ../recepcionista/edit.php");
+            header("location: /edit.php");
             exit;
         }
 
@@ -65,7 +65,7 @@
 
             $successMessage = "Cliente atualizado";
 
-            header("location: ../recepcionista/edit.php");
+            header("location: ../projeto-final/home.php");
             exit;
         } while(false);
     }
@@ -97,8 +97,8 @@
                 ";
             }
         ?>
-        <form method="post">
-            <input type="hidden"  value="<?php echo $id?>"
+        <form method="get">
+            <input type="hidden"  value="<?php echo $id ?>">
             <div class="row mb-3">
                 <label for="" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-6">
@@ -136,7 +136,7 @@
                     <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a href="./projeto-final/painel-adm/home.php" class="btn btn-outline-primary">Cancel</a>
+                    <a href="/projeto-final/painel-adm/home.php" class="btn btn-outline-primary">Cancel</a>
                 </div>
             </div>
         </form>

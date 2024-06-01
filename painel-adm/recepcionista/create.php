@@ -43,7 +43,7 @@
       
         $successMessage = "Cliente Adicionado";
 
-        header("location: ../recepcionista/novorecep.php");
+        header("location: ../painel-adm/home.php");
         exit;
     }
     while(false);

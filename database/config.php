@@ -6,10 +6,10 @@
     //$dbName = 'cadastro';
 
     //$conexao = new mysqli($servidor,$usuario,$senha,$banco);
-    $servidor = 'localhost';
-    $usuario = 'root';
-    $senha = '';
-    $banco = 'cadastro';
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "hotelphp";
     //if($conexao->connect_errno)
     //{
        // echo "Falha na conexão";
