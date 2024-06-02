@@ -1,23 +1,29 @@
 <?php
+    
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "hotelphp";
 
+    $connection = new mysqli($servername, $username, $password, $database);
     //print_r($REQUEST);
 
-    if(isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']))
+    if(isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']))
     {
         //Acessa
         include_once('config.php');
 
 
         $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $password = $_POST['password'];
 
         //print_r('Email: '. $email);
         //print_r(<br>);
         //print_r('Senha: '. $senha);
 
-        $sql = "SELECT *FROM usuarios WHERE email = '$email' and senha = '$senha'";
+        $sql = "SELECT *FROM usuarios WHERE email = '$email' and password = '$password'";
 
-        $result = $conn->query($sql);
+        $result = $connection->query($sql);
 
         if(mysqli_num_rows($result) < 1)
         {
@@ -28,7 +34,7 @@
         {
            session_start();
            $_SESSION['email'] = $email;
-           $_SESSION['senha']= $senha;
+           $_SESSION['password']= $password;
            header('Location: ../sistema.php');
         }
     }

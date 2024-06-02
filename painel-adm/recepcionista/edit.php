@@ -1,76 +1,90 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "hotelphp";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "hotelphp";
 
-    $connection = new mysqli($servername, $username, $password, $database);
+$connection = new mysqli($servername, $username, $password, $database);
 
-    $id = "";
-    $name = "";
-    $email = "";
-    $phone = "";
-    $address = "";
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
 
-  
+$id = "";
+$name = "";
+$email = "";
+$phone = "";
+$address = "";
 
-    $errorMessage = "";
-    $successMessage = true;
+$errorMessage = "";
+$successMessage = "";
 
-    if($_SERVER['REQUEST_METHOD'] == 'GET'){
-        if(!isset($_GET["id"])){
-            header("location: /edit.php");
-            exit;
-        }
-        $id = $_GET["id"];
 
-        $sql = "SELECT * FROM recepcionista WHERE id=$id";
-        $result = $connection->query($sql);
-        $row = $result->fetch_assoc();
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (!isset($_GET["id"])) {
+        header("location: ./edit.php");
+        exit;
+    }
 
-        if($row){
-            header("location: /edit.php");
-            exit;
-        }
+    $id = (int) $_GET["id"]; 
 
+    $sql = "SELECT * FROM recepcionista WHERE id = ?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if (!$row) { 
+        $errorMessage = "Recepcionista não encontrado.";
+    } else {
         $name = $row["name"];
         $email = $row["email"];
         $phone = $row["phone"];
         $address = $row["address"];
     }
-    else{
-        $id = $_POST["id"];
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
-        $address = $_POST["address"];
 
-        do{
-            if(empty($id) || empty($name) || empty($email) || empty($phone) || empty($address)){
-                $errorMessage = "Todos os campos são obrigatórios";
-                break;
-            }
+    $stmt->close(); 
 
-            $sql = "UPDATE recepcionista". 
-            "SET name = '$name', email = '$email', phone = '$phone', address = '$address'" .
-            "WHERE id = $id";
 
-            $result = $connection->query($sql);
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = (int) $_POST["id"]; 
+    $name = trim($_POST["name"]); 
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL); 
+    $phone = trim($_POST["phone"]); 
+    $address = trim($_POST["address"]); 
 
-            if(!$result){
-                $errorMessage = "Dados invalidos: " . $connection->error;
-                break;
-            }
-
-            $successMessage = "Cliente atualizado";
-
-            header("location: ../projeto-final/home.php");
-            exit;
-        } while(false);
+    if (empty($id) || empty($name) || empty($email) || empty($phone) || empty($address)) {
+        $errorMessage = "Todos os campos são obrigatórios.";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errorMessage = "O email informado é inválido.";
     }
 
+    if (empty($errorMessage)) {
+        $sql = "UPDATE recepcionista SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?";
+        $stmt = $connection->prepare($sql);
+
+        $stmt->bind_param("sssss", $name, $email, $phone, $address, $id); 
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows === 0) {
+            $errorMessage = "Nenhuma alteração realizada.";
+        } else {
+            $successMessage = "Recepcionista atualizado com sucesso!";
+            header("location: /projeto-final/painel-adm/home.php"); 
+            exit;
+        }
+
+        $stmt->close(); 
+    }
+}
+
+$connection->close(); 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -85,7 +99,7 @@
 <body>
     <div class="container my-5">
         <h1>Editar</h1>
-
+       
         <?php 
             if(!empty($errorMessage)){
                 echo"

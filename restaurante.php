@@ -1,3 +1,19 @@
+<?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "hotelphp";
+    
+    $connection = new mysqli($servername, $username, $password, $database);
+
+
+
+    do{
+    $sql = "INSERT INTO recepcionista (name, email, phone, address)" . "VALUES('$name', '$email', '$phone', '$address')";
+    $result = $connection->query($sql);
+    }
+    while(false);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -62,12 +78,24 @@
                 <label for="nota">Nota: </label>
                 <textarea id="nota" name="nota" rows="4" cols="50"></textarea>
                 
-                <button type="submit">Reservar</button>
+                <button type="submit" id="alert-message">Reservar</button>
+
+
+                <?php
+                $message = "Mesa Reservada com sucesso!";
+                ?>
+
+                
             </form>
         </section>
 
     </main>
 
+
+                    <script>
+                    document.getElementById("alert-message").textContent = "<?php echo $message; ?>";
+                    alert("<?php echo $message; ?>");
+                    </script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>

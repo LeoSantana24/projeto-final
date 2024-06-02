@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_GET["id"])) {
-    $id = (int) $_GET["id"]; // Cast to integer for safety
+    $id = (int) $_GET["id"];
 
     $servername = "localhost";
     $username = "root";
@@ -18,14 +18,22 @@ if (isset($_GET["id"])) {
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        echo "<a href='/home.php'>Recepcionista deletado, voltar</a>"; 
+        $successMessage = "Recepcionista deletado com sucesso!";
+        
     } else {
-        echo "Error deleting receptionist: " . $connection->error;
+        $errorMessage = "Error ao deletar recepcionista: " . $connection->error;
     }
 
     $stmt->close();
     $connection->close();
 }
 
+// Display success or error message (conditionally, if not redirecting)
+if (!empty($successMessage)) {
+    echo "<a href='/projeto-final/home.php'>$successMessage - Voltar</a>";
+} else if (!empty($errorMessage)) {
+    echo $errorMessage;
+}
 ?>
+
 

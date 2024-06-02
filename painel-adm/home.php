@@ -31,7 +31,6 @@
     $username = "root";
     $password = "";
     $database = "hotelphp";
-
     $connection = new mysqli($servername, $username, $password, $database);
 
     if ($connection->connect_error) {
