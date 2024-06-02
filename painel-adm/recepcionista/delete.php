@@ -30,7 +30,7 @@ if (isset($_GET["id"])) {
 
 // Display success or error message (conditionally, if not redirecting)
 if (!empty($successMessage)) {
-    echo "<a href='/projeto-final/home.php'>$successMessage - Voltar</a>";
+    echo "<a href='../home.php'>$successMessage - Voltar</a>";
 } else if (!empty($errorMessage)) {
     echo $errorMessage;
 }
