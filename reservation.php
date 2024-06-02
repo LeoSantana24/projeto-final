@@ -1,3 +1,64 @@
+<?php
+
+$id = "";
+$nome = "";
+$telefone = "";
+$hora = "";
+$numero_pessoas = "";
+$descricao = "";
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "hotelphp"; 
+
+$connection = new mysqli($servername, $username, $password, $database);
+
+$errorMessage = "";
+$successMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = trim($_POST["nome"]); 
+    $telefone = trim($_POST["telefone"]); 
+
+    
+    if (empty($nome) || empty($telefone)) {
+        $errorMessage = "Todos os campos são obrigatórios.";
+    } else if (!preg_match("/^\d{3}-\d{3}-\d{4}$/", $telefone)) { 
+        $errorMessage = "O número de telefone informado é inválido.";
+    }
+
+    if (empty($errorMessage)) { 
+        $sql = "INSERT INTO reservas (id, nome, telefone, hora, numero_pessoas, descricao)" .
+               "VALUES (?, ?)";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("ss", $nome, $telefone);
+
+        if ($stmt->execute()) {
+            $successMessage = "Reserva efetuada com sucesso!";
+            $nome = "";
+            $telefone = "";
+        } else {
+            $errorMessage = "Erro ao efetuar reserva: " . $connection->error;
+        }
+
+        $stmt->close(); 
+    }
+
+    header("location: ../home.php");
+     exit;
+}
+
+$connection->close(); 
+
+?>
+
+
+
+
+
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -59,10 +120,10 @@
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="name">Nome</label>
-                  <input type="text" id="name" class="form-control ">
+                  <input type="text" id="name" class="form-control " value="<?php echo $nome;?>">
                 </div>
                 <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="phone">Telefone</label>
+                  <label class="text-black font-weight-bold" for="phone"  value="<?php echo $telefone;?>">Telefone</label>
                   <input type="text" id="phone" class="form-control ">
                 </div>
               </div>
@@ -70,14 +131,14 @@
               <div class="row">
                 <div class="col-md-12 form-group">
                   <label class="text-black font-weight-bold" for="email">Email</label>
-                  <input type="email" id="email" class="form-control ">
+                  <input type="email" id="email" class="form-control "  value="<?php echo $email;?>">
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="checkin_date">Data entrada</label>
-                  <input type="text" id="checkin_date" class="form-control">
+                  <input type="text" id="checkin_date" class="form-control"  value="<?php echo $hora;?>">
                 </div>
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="checkout_date">Data saida</label>

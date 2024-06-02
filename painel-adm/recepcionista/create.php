@@ -1,8 +1,5 @@
 
-
-
 <?php
-// CRIANDO NOVO RECEPCIONISTA
   $name = "";
   $email = "";
   $phone = "";
@@ -43,7 +40,8 @@
       
         $successMessage = "Cliente Adicionado";
 
-        header("location: ../painel-adm/home.php");
+        header("location: ../home.php
+        ");
         exit;
     }
     while(false);
