@@ -35,47 +35,48 @@
     
     
     <div class="wrapper">
-    <form action="database/registar.php" method="POST">
-        <h1>Registar</h1>
-        <div class="input-box">
-            <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
-            <i class='bx bx-user'></i>
-        </div>
-        <div class="input-box">
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <i class='bx bxs-envelope'></i>
-        </div>
-        <div class="input-box">
-            <input type="tel" name="telefone" id="telefone" placeholder="Telefone" required>
-            <i class="fi fi-rr-phone-call"></i>
-        </div>
-       
-        <p>Sexo</p>
-        <input type="radio" id="feminino" name="genero" value="feminino" required>
-        <label for="feminino">Feminino</label>
-        <input type="radio" id="masculino" name="genero" value="masculino" required>
-        <label for="masculino">Masculino</label>
-        <label for="data_nascimento">Data de Nascimento:</label>
-        <input type="date" name="data_nascimento" id="data_nascimento" required>
-        
-        <div class="input-box">
-            <input type="text" name="pais" id="pais" placeholder="País" required>
-        
-        </div>
-        
-        <div class="input-box">
-            <input type="password" name="senha" id="senha" placeholder="Senha" required>
-            <i class='bx bxs-lock-alt' ></i>
-        </div>
-        <div class="input-box">
-            <input type="password" name="confirmarsenha" id="senha" placeholder="Confirmar Senha" required>
-            <i class='bx bxs-lock-alt' ></i>
-        </div>
-    
-        <button type="submit" name="submit" id="submit" class="btn">Registar</button>
-        
-    </form>
-</div>
+        <form action="database/registar.php" method="POST">
+            <h1>Registar</h1>
+
+            <div class="input-box">
+                <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" value="<?php echo $nome_completo; ?>">
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="email" name="email" id="email" placeholder="Email" required value="<?php echo $email; ?>">
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="tel" name="telefone" id="telefone" placeholder="Telefone" required value="<?php echo $telefone; ?>">
+                <i class="fi fi-rr-phone-call"></i>
+            </div>
+
+            <p>Sexo</p>
+            <input type="radio" id="feminino" name="genero" value="feminino" required <?php if (isset($_POST['genero']) && $_POST['genero'] == 'feminino') echo 'checked'; ?>>
+            <label for="feminino">Feminino</label>
+            <input type="radio" id="masculino" name="genero" value="masculino" required <?php if (isset($_POST['genero']) && $_POST['genero'] == 'masculino') echo 'checked'; ?>>
+            <label for="masculino">Masculino</label>
+
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="date" name="data_nascimento" id="data_nascimento" required value="<?php echo $data_nascimento; ?>">
+
+            <div class="input-box">
+                <input type="text" name="pais" id="pais" placeholder="País" required value="<?php echo $pais; ?>">
+            </div>
+
+            <div class="input-box">
+                <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="input-box">
+                <input type="password" name="confirmarsenha" id="senha" placeholder="Confirmar Senha" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+
+            <button type="submit" name="submit" id="submit" class="btn">Registar</button>
+
+        </form>
+    </div>
 
 
    
