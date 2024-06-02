@@ -4,14 +4,19 @@
 
     
 
-    function registar($nome, $email, $telefone, $genero, $data_nasc, $pais, $senha) {
-        include_once("config.php");
+    function registar($nome, $email, $telefone, $genero, $data_nasc, $password) {
+        include_once("conexao.php");
         
-        $result = mysqli_query($conexao, "INSERT INTO usuarios(nome_completo,email,telefone,genero,data_nasc,pais,senha)
-        VALUES('$nome','$email','$telefone','masculino','$data_nasc','$pais','$senha')");
+        $hash = "1234".$senha;
+        echo '<br>Password: '.$password;
+        echo '- Senha: '.$senha;
+        echo 'hash: '.$hash;
+        $result = mysqli_query($conn, "INSERT INTO usuarios(nome_completo,email,telefone,genero,data_nasc,senha)
+        VALUES('$nome','$email','$telefone','$genero','$data_nasc', '$password')");
 
         return $result;
     }
 
 
 ?>
+

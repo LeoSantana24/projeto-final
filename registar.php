@@ -35,6 +35,7 @@
     
     
     <div class="wrapper">
+<<<<<<< HEAD
         <form action="database/registar.php" method="POST">
             <h1>Registar</h1>
 
@@ -77,6 +78,45 @@
 
         </form>
     </div>
+=======
+    <form action="database/registar.php" method="POST">
+        <h1>Registar</h1>
+        <div class="input-box">
+            <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
+            <i class='bx bx-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <i class='bx bxs-envelope'></i>
+        </div>
+        <div class="input-box">
+            <input type="tel" name="telefone" id="telefone" placeholder="Telefone" required>
+            <i class="fi fi-rr-phone-call"></i>
+        </div>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" id="data_nascimento" required>
+       
+        <p>Sexo:</p>
+        <input type="radio" id="feminino" name="genero" value="feminino" required>
+        <label for="feminino">Feminino</label>
+        <input type="radio" id="masculino" name="genero" value="masculino" required>
+        <label for="masculino">Masculino</label>
+        
+        
+        <div class="input-box">
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+        <div class="input-box">
+            <input type="password" name="confirmarsenha" id="senha" placeholder="Confirmar Senha" required>
+            <i class='bx bxs-lock-alt' ></i>
+        </div>
+    
+        <button type="submit" name="submit" id="submit" class="btn">Registar</button>
+        
+    </form>
+</div>
+>>>>>>> e253e83d853b4abc22db29de7083266a1114dbab
 
 
    
