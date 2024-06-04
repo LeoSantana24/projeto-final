@@ -38,7 +38,7 @@
         <form action="database/login.php" method="POST">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="email" name="email" id="email" placeholder="name@example.com" required >
+                <input type="email" name="email" id="email" placeholder="name@example.com" required value="">
                 <i class='bx bxs-envelope'></i>
             </div>
             <div class="input-box">
@@ -49,8 +49,13 @@
             <button type="submit" name="submit" id="submit" class="btn" >Login</button>
             
         </form>
-        
+        <div id="login-success" class="login-message"></div>
     </div>
+<script>
+  if (document.getElementById('login-success').textContent) {
+    alert("LOGADO"); 
+  }
+</script>
 
 
    

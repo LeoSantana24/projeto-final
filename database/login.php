@@ -1,70 +1,41 @@
 <?php
-    
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "hotelphp";
 
-    $connection = new mysqli($servername, $username, $password, $database);
-    //print_r($REQUEST);
+$email = ""; 
+$password = "";
+$submit = "";
 
-    if(isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password']))
-    {
-        //Acessa
-        include_once('conexao.php');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "hotelphp";
 
+$connection = new mysqli($servername, $username, $password, $database);
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+// Iniciar sessão
+session_start();
 
-        //print_r('Email: '. $email);
-        //print_r(<br>);
-        //print_r('Senha: '. $senha);
+if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+  // Login
+  $email = $_POST['email'];
+  $password = $_POST['password'];
 
-<<<<<<< HEAD
-        $sql = "SELECT *FROM usuarios WHERE email = '$email' and password = '$password'";
+  // Prepare statement para evitar SQL Injection
+  $stmt = $connection->prepare("SELECT * FROM usuarios WHERE email = ? AND password = ?");
+  $stmt->bind_param("ss", $email, $password);
+  $stmt->execute();
+  $result = $stmt->get_result();
 
-        $result = $connection->query($sql);
-=======
-        $sql = "SELECT *FROM usuarios WHERE email = '$email' ";
-        $result = $conn->query($sql);
-        
->>>>>>> e253e83d853b4abc22db29de7083266a1114dbab
+  if (mysqli_num_rows($result) === 0 || !password_verify($password, ($row = $result->fetch_assoc())['password'])) {
+    header('Location: ../sistema.php'); 
+    exit(); 
+  } else {
+    $_SESSION['email'] = $email;
+    header('Location: ../sistema.php');
+  }
 
-         if(mysqli_num_rows($result) < 1)
-        {
-            header('Location: ../login.php?login=erro');
-
-        }
-        else
-        {
-<<<<<<< HEAD
-           session_start();
-           $_SESSION['email'] = $email;
-           $_SESSION['password']= $password;
-           header('Location: ../sistema.php');
-        }
-=======
-            
-            $row = mysqli_fetch_assoc($result);
-            if(password_verify($senha, $row['senha'])){
-
-                session_start();
-
-                $_SESSION['email'] = $email;
-                $_SESSION['senha']= $senha;
-                header('Location: ../sistema.php');
-            } else {
-                header('Location: ../login.php?login=dadosinvalidos');
-            }
-           
-        } 
->>>>>>> e253e83d853b4abc22db29de7083266a1114dbab
-    }
-    else
-    {
-        //Não acessa
-        header('Location: login.php');
-    }
+  $stmt->close();
+  $connection->close(); // Fechar a conexão com o banco
+}
 
 ?>
+
