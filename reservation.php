@@ -3,15 +3,15 @@
 $id = "";
 $nome = "";
 $telefone = "";
-$hora = "";
-$numero_pessoas = "";
+$dataEntrada = ""; 
+$dataSaida = "";    
+$pessoas = "";     // Combined adults and children
 $descricao = "";
-
 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "hotelphp"; 
+$database = "hotelphp";
 
 $connection = new mysqli($servername, $username, $password, $database);
 
@@ -19,44 +19,47 @@ $errorMessage = "";
 $successMessage = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome = trim($_POST["nome"]); 
-    $telefone = trim($_POST["telefone"]); 
+    $nome = trim($_POST["nome"]);
+    $telefone = trim($_POST["telefone"]);
+    $dataEntrada = trim($_POST["dataEntrada"]);  
+    $dataSaida = trim($_POST["dataSaida"]);       
+    $pessoas = trim($_POST["pessoas"]);           
 
-    
-    if (empty($nome) || empty($telefone)) {
-        $errorMessage = "Todos os campos são obrigatórios.";
-    } else if (!preg_match("/^\d{3}-\d{3}-\d{4}$/", $telefone)) { 
+    if (empty($nome) || empty($telefone) || empty($dataEntrada) || empty($dataSaida) || empty($pessoas)) {
+      $errorMessage = "Todos os campos são obrigatórios.";
+      
+} else if(($telefone)) {
         $errorMessage = "O número de telefone informado é inválido.";
     }
 
-    if (empty($errorMessage)) { 
-        $sql = "INSERT INTO reservas (id, nome, telefone, hora, numero_pessoas, descricao)" .
-               "VALUES (?, ?)";
+    if (empty($errorMessage)) {
+        $sql = "INSERT INTO reservas (id, nome, telefone, dataEntrada, dataSaida, numero_pessoas, descricao)"
+             . "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("ss", $nome, $telefone);
+        $stmt->bind_param("sssssss", $id, $nome, $telefone, $dataEntrada, $dataSaida, $pessoas, $descricao);
 
         if ($stmt->execute()) {
             $successMessage = "Reserva efetuada com sucesso!";
             $nome = "";
             $telefone = "";
+            $dataEntrada = "";
+            $dataSaida = "";
+            $pessoas = "";
         } else {
             $errorMessage = "Erro ao efetuar reserva: " . $connection->error;
         }
 
-        $stmt->close(); 
+        $stmt->close();
     }
 
     header("location: ../home.php");
-     exit;
+    exit;
 }
 
-$connection->close(); 
+$connection->close();
 
 ?>
-
-
-
 
 
 <!DOCTYPE HTML>
@@ -130,25 +133,25 @@ $connection->close();
           
               <div class="row">
                 <div class="col-md-12 form-group">
-                  <label class="text-black font-weight-bold" for="email">Email</label>
-                  <input type="email" id="email" class="form-control "  value="<?php echo $email;?>">
+                  <label class="text-black font-weight-bold" for="email"  value="<?php echo $email;?>>Email</label>
+                  <input type="email" id="email" class="form-control ">
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="checkin_date">Data entrada</label>
-                  <input type="text" id="checkin_date" class="form-control"  value="<?php echo $hora;?>">
+                  <input type="text" id="checkin_date" class="form-control"  value="<?php echo $dataEntrada;?>">
                 </div>
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="checkout_date">Data saida</label>
-                  <input type="text" id="checkout_date" class="form-control">
+                  <input type="text" id="checkout_date" class="form-control"  value="<?php echo $dataSaida;?>">
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label for="adults" class="font-weight-bold text-black">Adultos</label>
+                  <label for="adults" class="font-weight-bold text-black" value="<?php echo $adultos;?>">Adultos</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                     <select name="" id="adults" class="form-control">
@@ -160,7 +163,7 @@ $connection->close();
                   </div>
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="children" class="font-weight-bold text-black">Children</label>
+                  <label for="children" class="font-weight-bold text-black" value="<?php echo $criancas;?>">Children</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                     <select name="" id="children" class="form-control">
