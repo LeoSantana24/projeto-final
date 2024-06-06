@@ -1,3 +1,40 @@
+<?php
+
+function validateDate($date) {
+  return date_create_from_format('Y-m-d', $date) !== false;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $checkin_date = trim($_POST['checkin_date']);
+  $checkout_date = trim($_POST['checkout_date']);
+  $adults = trim($_POST['adults']);
+  $children = trim($_POST['children']);
+
+  $errors = [];
+
+
+  if (!validateDate($checkin_date)) {
+    $errors[] = 'Check-in date must be in YYYY-MM-DD format.';
+  }
+
+  if (!validateDate($checkout_date)) {
+    $errors[] = 'Check-out date must be in YYYY-MM-DD format.';
+  }
+
+  if (empty($errors)) {
+
+  } else {
+
+    echo '<ul>';
+    foreach ($errors as $error) {
+      echo "<li>$error</li>";
+    }
+    echo '</ul>';
+  }
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
   <head>
