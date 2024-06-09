@@ -11,7 +11,7 @@ $email = "";
 $password = "";
 $error = "";
 
-// Verificar se existe sessão ativa (opcional)
+
 if (isset($_SESSION["email"])) {
   header("location: /index.php");
   exit;
@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (empty($email) || empty($password)) {
     $error = "Email e Senha obrigatórios!";
   } else {
-    // Verificar login no banco de dados (implemente a consulta SQL)
     $sql = "SELECT * FROM usuarios WHERE email = ?";
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -35,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $row = $result->fetch_assoc();
       if (password_verify($password, $row['senha'])) {
         // Login bem-sucedido
-        $_SESSION['email'] = $email; // Iniciar sessão
-        header("location: /sistema.php"); // Redirecionar para página específica
+        $_SESSION['email'] = $email; 
+        header("location: /sistema.php");
         exit;
       } else {
         $error = "Email ou Senha incorretos!";
@@ -63,20 +62,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     
 <form style="width: 50%; margin: 0 auto; margin-top: 10rem; display:block;" method="post">
-  <!-- Email input -->
   <h1>Login de Usuario</h1>
   <div data-mdb-input-init class="form-outline mb-4">
     <input type="email" id="form2Example1" class="form-control" value="<?php $email ?>"/>
     <label class="form-label" for="form2Example1">Email address</label>
   </div>
 
-  <!-- Password input -->
   <div data-mdb-input-init class="form-outline mb-4">
     <input type="password" id="form2Example2" class="form-control" value="<?php $password ?>" />
     <label class="form-label" for="form2Example2">Password</label>
   </div>
 
-  <!-- 2 column grid layout for inline styling -->
+
   <div class="row mb-4">
     <div class="col d-flex justify-content-center">
       <!-- Checkbox -->
@@ -92,12 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </div>
 
-  <!-- Submit button -->
   <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Sign in</button>
 
-  <!-- Register buttons -->
   <div class="text-center">
-    <p>Not a member? <a href="#!">Register</a></p>
+    <p>Not a member? <a href="./registraradm.php">Register</a></p>
    
   </div>
 </form>
