@@ -1,46 +1,44 @@
 <?php
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "hotelphp";
 
-if(isset($_POST['submit']))
-{
-  
-  //print_r('<br>');
-  //print_r('<br>');
-  //print_r('<br>');
-  //print_r('Nome:' . $_POST['nome']);
-  //print_r('<br>');
-  //print_r('Email:' . $_POST['email']);
-  //print_r('<br>');
-  //print_r('Telefone:' . $_POST['telefone']);
-  //print_r('<br>');
-  //print_r('Sexo:' . $_POST['sexo']);
-  //print_r('<br>');
-  //print_r('Data de Nascimento:' . $_POST['data_nascimento']);
-  //print_r('<br>');
-  //print_r('Pais:' . $_POST['pais']);
-  //print_r('<br>');
-  //print_r('senha:' . $_POST['senha']);
+  $connection = new mysqli($servername, $username, $password, $database);
 
 
-  include_once('setup.php');
+$nome_completo = "";
+$email = "";
+$telefone = "";
+$genero = "";
+$data_nascimento = "";
+$pais = "";
 
-
-  $nome = $_POST['nome_completo'];
-  $email = $_POST['email'];
-  $telefone = $_POST['telefone'];
-  $data_nasc = $_POST['data_nascimento'];
-  $genero = $_POST['genero'];
-  $senha = $_POST['senha'];
- 
-  echo 'Senha: '.$senha;
-  $password = password_hash($senha,PASSWORD_DEFAULT);
-  $res = registar($nome, $email, $telefone, $genero, $data_nasc, $password);
-
-  //print_r($res);
-  
-  header("location: ../registar.php?res=$res");
-
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome_completo = $_POST["nome_completo"];
+    $email = $_POST["email"];
+    $telefone = $_POST["telefone"];
+    $genero = $_POST["genero"];
+    $data_nascimento = $_POST["data_nascimento"];
+    $pais = $_POST["pais"];
+    $senha = $_POST["senha"];
+    $confirmarsenha = $_POST["confirmarsenha"];
 }
+
+if(empty($nome_completo)){
+  $nome_completo = " É obrigatótio o nome completo";
+  $error = true;
+}
+
+if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+  $email_error = "Formato de email inválido";
+  $error = true;
+}
+
+include "database/config.php";
+$dbConnection = getData();
+
+$statement = $dbConnection->prepare("SELECT id FROM usuarios WHERE email = ?")
 
 
 ?>
