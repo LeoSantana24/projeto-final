@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($result->num_rows === 1) {
     $reserva = $result->fetch_assoc();
 
-    // Cancel the reservation (if found)
+
     $sql = "DELETE FROM reservas WHERE id = ?";
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("i", $reserva_id);

@@ -83,8 +83,8 @@
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="recepcionista/novorecep.php?pag=<?php echo $menu1 ?>">Recepcionistas</a>
-                            <a class="collapse-item" href="home.php?pag=<?php echo $menu2 ?>">Menu 2</a>
+                            <a class="collapse-item" href="home.php?pag=<?php echo $menu1 ?>">Recepcionistas</a>
+                            <a class="collapse-item" href="./usuarios/usuarioadm.php?=<?php echo $menu2 ?>">Usuarios</a>
                         </div>
                     </div>
                 </li>

@@ -1,50 +1,52 @@
 <?php
+
+$id = "";
+$nome = "";
+$telefone = "";
+$dataEntrada = ""; 
+$dataSaida = "";    
+$pessoas = "";     
+$descricao = "";
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "hotelphp";
 
+
 $connection = new mysqli($servername, $username, $password, $database);
 
-if (isset($_GET['data_inicio']) && isset($_GET['data_fim'])) {
-    $data_inicio = $_GET['data_inicio'];
-    $data_fim = $_GET['data_fim'];
+if (isset($_GET['dataEntrada']) && isset($_GET['dataSaida'])) {
+    $dataEntrada = $_GET['dataEntrada'];
+    $dataSaida = $_GET['dataSaida'];
 
-    $sql = "SELECT * FROM reservas WHERE data_entrada >= '$data_inicio' AND data_saida <= '$data_fim'";
+    $sql = "SELECT * FROM consulta_reservas WHERE dataEntrada >= '$dataEntrada' AND dataSaida <= '$dataSaida'"
+    . "VALUES ('$dataEntrada'),( '$dataSaida')";
     $result = $connection->query($sql);
 
 
-    if ($result->num_rows > 0) {
-        echo '<table>';
+    if (isset($_GET['id']) && isset($_GET['nome']) && isset($_GET['telefone']) && isset($_GET['dataEntrada']) && isset($_GET['dataSaida']) && isset($_GET['pessoas']) && isset($_GET['descricao'])) {
+        $id = $_GET['id'];
+        $nome = $_GET['nome'];
+        $telefone = $_GET['telefone'];
+        $dataEntrada = $_GET['dataEntrada'];
+        $dataSaida = $_GET['dataSaida'];
+        $pessoas = $_GET['pessoas'];
+        $descricao = $_GET['descricao'];
+      
         echo '<tr>';
-        echo '<th>ID</th>';
-        echo '<th>Nome do Cliente</th>';
-        echo '<th>Data de Entrada</th>';
-        echo '<th>Data de Saída</th>';
-        echo '<th>Pessoas</th>';
-        echo '<th>Descrição</th>';
+        echo '<td>' . $id . '</td>';
+        echo '<td>' . $nome . '</td>';
+        echo '<td>' . $dataEntrada . '</td>';
+        echo '<td>' . $dataSaida . '</td>';
+        echo '<td>' . $pessoas . '</td>';
+        echo '<td>' . $descricao . '</td>';
         echo '</tr>';
-
-        while ($row = $result->fetch_assoc()) {
-            echo '<tr>';
-            echo '<td>' . $row['id'] . '</td>';
-            echo '<td>' . $row['nome_cliente'] . '</td>';
-            echo '<td>' . $row['data_entrada'] . '</td>';
-            echo '<td>' . $row['data_saida'] . '</td>';
-            echo '<td>' . $row['pessoas'] . '</td>';
-            echo '<td>' . $row['descricao'] . '</td>';
-            echo '</tr>';
-        }
-
-        echo '</table>';
+      }
     } else {
         echo 'Nenhuma reserva encontrada para as datas selecionadas.';
     }
-} else {
-    echo 'Por favor, selecione as datas para consultar as reservas.';
-}
 
-$connection->close();
 ?>
 
 
@@ -77,7 +79,7 @@ $connection->close();
         <input type="date" id="data_inicio" name="data_inicio"><br><br>
         <label for="data_fim">Data de Fim:</label>
         <input type="date" id="data_fim" name="data_fim"><br><br>
-        <input type="submit" value="Consultar">
+        <input type="submit" value="Consultar" method="get">
     </form>
     <table id="reservas">
         <thead>
@@ -94,5 +96,6 @@ $connection->close();
         </tbody>
     </table>
     <script src="consultar_reservas.js"></script>
+    <a href="./cancelar.php" class="btn">Cancelar</a>
 </body>
 </html>

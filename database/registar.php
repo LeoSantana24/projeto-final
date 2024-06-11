@@ -38,7 +38,7 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 include "database/config.php";
 $dbConnection = getData();
 
-$statement = $dbConnection->prepare("SELECT id FROM usuarios WHERE email = ?")
+$statement = $dbConnection->prepare("SELECT id FROM usuarios WHERE email = ?"  . "VALUE ('$email'), ('$nome')")
 
 
 ?>
