@@ -7,7 +7,7 @@ $submit = "";
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "projeto";
+$database = "cadastro";
 
 $connection = new mysqli($servername, $username, $password, $database);
 

@@ -6,7 +6,7 @@ if (isset($_GET["id"])) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "hotelphp";
+    $database = "cadastro";
 
     $connection = new mysqli($servername, $username, $password, $database);
 
