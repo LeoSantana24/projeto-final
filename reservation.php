@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errorMessage)) {
-        $sql = "INSERT INTO reservas (id, nome, telefone, dataEntrada, dataSaida, numero_pessoas, descricao)"
-             . "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO consulta_reservas (id, nome, telefone, dataEntrada, dataSaida, numero_pessoas, descricao)"
+                  . "VALUES ('$id'), ('$nome'), ('$telefone'), ('$dataEntrada'),( '$dataSaida'), ('$numero_pessoas'), ('$descricao')";
 
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("sssssss", $id, $nome, $telefone, $dataEntrada, $dataSaida, $pessoas, $descricao);
+        $stmt->bind_param( $id, $nome, $telefone, $dataEntrada, $dataSaida, $pessoas, $descricao);
 
         if ($stmt->execute()) {
             $successMessage = "Reserva efetuada com sucesso!";
@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dataEntrada = "";
             $dataSaida = "";
             $pessoas = "";
+            $descricao = "";
         } else {
             $errorMessage = "Erro ao efetuar reserva: " . $connection->error;
         }
@@ -133,8 +134,8 @@ $connection->close();
           
               <div class="row">
                 <div class="col-md-12 form-group">
-                  <label class="text-black font-weight-bold" for="email"  value="<?php echo $email;?>>Email</label>
-                  <input type="email" id="email" class="form-control ">
+                  <label class="text-black font-weight-bold" for="email" >Email</label>
+                  <input type="email" id="email" class="form-control"   value="<?php echo $email;?>">
                 </div>
               </div>
 
@@ -186,7 +187,7 @@ $connection->close();
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="submit" value="Reserve Now" class="btn btn-primary text-white py-3 px-5 font-weight-bold">
+                  <a href="./reservas/consulta.php" class="btn btn-primary text-white py-3 px-5 font-weight-bold">Reserve Agora</a>
                 </div>
               </div>
             </form>
@@ -290,17 +291,26 @@ $connection->close();
     
     
     <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-        <div class="container" >
-          <div class="row align-items-center">
+    <div class="container">
+        <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
+                <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+                <a href="./reservas/consulta.php" class="btn btn-outline-white-primary py-3 text-white px-5" id="reserveNowButton">Reserve Now</a>
             </div>
-          </div>
         </div>
-      </section>
+    </div>
+</section>
+
+<script>
+const reserveButton = document.getElementById('reserveNowButton');
+
+reserveButton.addEventListener('click', function() {
+  window.alert("Your reservation has been successfully registered!");
+});
+</script>
+
 
       <?php include "includes/footer.php" ?>
     

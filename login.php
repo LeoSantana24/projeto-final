@@ -46,16 +46,12 @@
                 <i class='bx bxs-lock-alt' ></i>
             </div>
         
-            <button type="submit" name="submit" id="submit" class="btn" >Login</button>
+            <a href="./reservation.php" class="btn">Login</a>
             
         </form>
         <div id="login-success" class="login-message"></div>
     </div>
-<script>
-  if (document.getElementById('login-success').textContent) {
-    alert("LOGADO"); 
-  }
-</script>
+
 
 
    
