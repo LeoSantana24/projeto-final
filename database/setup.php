@@ -112,4 +112,98 @@ function login($email, $password) {
     $conn->close();
 }
 
+function inserirQuarto($titulo, $descricao, $numero, $imagem, $estado, $preco) {
+    $conn = getDatabase();
+
+    // Preparar a chamada ao procedimento armazenado
+    $stmt = $conn->prepare("CALL inserir_quarto(?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssissd", $titulo, $descricao, $numero, $imagem, $estado, $preco);
+
+    if ($stmt->execute()) {
+        $result = true;  // Retorna true indicando sucesso
+    } else {
+        $result = "Erro ao inserir o quarto: " . $stmt->error;  // Retorna a mensagem de erro
+    }
+
+    $stmt->close();
+    $conn->close();
+
+    return $result;  // Retorna true ou a mensagem de erro
+}
+
+function listarQuartos() {
+    $conn = getDatabase();
+
+    // Preparar a chamada ao procedimento armazenado
+    $stmt = $conn->prepare("CALL listar_quartos()");
+
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        $quartos = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $quartos[] = $row;  // Armazena cada quarto no array
+        }
+
+        $stmt->close();
+        $conn->close();
+
+        return $quartos;  // Retorna um array com todos os quartos
+    } else {
+        $stmt->close();
+        $conn->close();
+
+        return "Erro ao listar os quartos: " . $stmt->error;  // Retorna a mensagem de erro
+    }
+}
+
+
+function listarQuartoPorId($id) {
+    $conn = getDatabase();
+
+    // Preparar a chamada ao procedimento armazenado
+    $stmt = $conn->prepare("CALL listar_quarto_por_id(?)");
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            $conn->close();
+            return $row;  // Retorna os dados do quarto como array associativo
+        } else {
+            $stmt->close();
+            $conn->close();
+            return "Nenhum quarto encontrado com o ID: $id";  // Retorna mensagem se não houver resultado
+        }
+    } else {
+        $stmt->close();
+        $conn->close();
+        return "Erro ao listar o quarto: " . $stmt->error;  // Retorna a mensagem de erro
+    }
+}
+
+
+function atualizarQuarto($id, $titulo, $descricao, $imagem, $estado, $preco) {
+    $conn = getDatabase();
+
+    // Preparar a chamada ao procedimento armazenado
+    $stmt = $conn->prepare("CALL atualizar_quarto(?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssd", $id, $titulo, $descricao, $imagem, $estado, $preco);
+
+    if ($stmt->execute()) {
+        $result = true;  // Retorna true indicando sucesso
+    } else {
+        $result = "Erro ao atualizar o quarto: " . $stmt->error;  // Retorna a mensagem de erro
+    }
+
+    $stmt->close();
+    $conn->close();
+
+    return $result;  // Retorna true ou a mensagem de erro
+}
+
+
+
 ?>

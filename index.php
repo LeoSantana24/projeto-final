@@ -36,7 +36,7 @@
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span>   Hotel</span>
-            <h1 class="heading">A Best Place To Stay</h1>
+            <h1 class="heading">O Melhor lugar para ficar!</h1>
           </div>
         </div>
       </div>
@@ -147,7 +147,7 @@
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Single Room</h2>
-                <span class="text-uppercase letter-spacing-1">90$ / per night</span>
+                <span class="text-uppercase letter-spacing-1">90$ / por noite</span>
               </div>
             </a>
           </div>
@@ -159,7 +159,7 @@
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Family Room</h2>
-                <span class="text-uppercase letter-spacing-1">120$ / per night</span>
+                <span class="text-uppercase letter-spacing-1">120$ / por noite</span>
               </div>
             </a>
           </div>
@@ -171,7 +171,7 @@
               </figure>
               <div class="p-3 text-center room-info">
                 <h2>Presidential Room</h2>
-                <span class="text-uppercase letter-spacing-1">250$ / per night</span>
+                <span class="text-uppercase letter-spacing-1">250$ / por noite</span>
               </div>
             </a>
           </div>
