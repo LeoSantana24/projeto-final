@@ -35,11 +35,39 @@
     
     
     <div class="wrapper">
+
+        <?php
+
+            if(isset($_GET["valid"])){
+                $valid = $_GET["valid"];
+
+                if ($valid == 'false'){
+                    echo '<div class="alert alert-danger" role="alert">
+                                A simple danger alert—check it out!
+                            </div>';
+                }
+            }
+
+            if(isset($_GET["res"])){
+                $res = $_GET["res"];
+
+                if ($res == 'true'){
+                    echo '<div class="alert alert-success" role="alert">
+                                A simple success alert—check it out!
+                            </div>';
+                } else {
+                    echo '<div class="alert alert-danger" role="alert">
+                                A simple danger alert—check it out!
+                            </div>';
+                }
+            }
+        ?>
+        
         <form action="database/registar.php" method="POST">
             <h1>Registar</h1>
 
             <div class="input-box">
-                <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" >
+                <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome Completo" required>
                 <i class='bx bx-user'></i>
             </div>
             <div class="input-box">
@@ -49,19 +77,6 @@
             <div class="input-box">
                 <input type="tel" name="telefone" id="telefone" placeholder="Telefone" required >
                 <i class="fi fi-rr-phone-call"></i>
-            </div>
-
-            <p>Sexo</p>
-            <input type="radio" id="feminino" name="genero" value="feminino" required >
-            <label for="feminino">Feminino</label>
-            <input type="radio" id="masculino" name="genero" value="masculino" required <?php if (isset($_POST['genero']) && $_POST['genero'] == 'masculino') echo 'checked'; ?>>
-            <label for="masculino">Masculino</label>
-
-            <label for="data_nascimento">Data de Nascimento:</label>
-            <input type="date" name="data_nascimento" id="data_nascimento" required>
-
-            <div class="input-box">
-                <input type="text" name="pais" id="pais" placeholder="País" required >
             </div>
 
             <div class="input-box">

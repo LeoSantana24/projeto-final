@@ -14,19 +14,19 @@ function getDatabase(){
 }
 
 
-function inserirCliente($nome, $email, $telefone, $tipo, $password) {
+function inserirCliente($nome, $email, $telefone, $password) {
     // Configurações de conexão
-    $conn = getDatabase()
+    $conn = getDatabase();
 
     // Preparar a chamada ao procedimento armazenado
-    $stmt = $conn->prepare("CALL inserir_cliente(?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $nome, $email, $telefone, $tipo, $password);
+    $stmt = $conn->prepare("CALL inserir_cliente(?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nome, $email, $telefone, $password);
 
     // Executar o procedimento armazenado
     if ($stmt->execute()) {
-        echo "Cliente inserido com sucesso.";
+        header ("location: ../registar.php?res=true");
     } else {
-        echo "Erro ao inserir cliente: " . $stmt->error;
+        header ("location: ../registar.php?res=false");
     }
 
     // Fechar a conexão
@@ -36,7 +36,7 @@ function inserirCliente($nome, $email, $telefone, $tipo, $password) {
 
 function inserirAdministrador($nome, $email, $telefone, $tipo, $password) {
     // Configurações de conexão
-  $conn = getDatabase()
+  $conn = getDatabase();
 
     // Preparar a chamada ao procedimento armazenado
     $stmt = $conn->prepare("CALL inserir_administrador(?, ?, ?, ?, ?)");
@@ -56,18 +56,7 @@ function inserirAdministrador($nome, $email, $telefone, $tipo, $password) {
 
 function inserirRecepcionista($nome, $email, $telefone, $tipo, $password) {
     // Configurações de conexão
-    $servername = "localhost";
-    $username = "root";
-    $password_db = "sua_senha";
-    $dbname = "nome_do_banco_de_dados";
-
-    // Criar conexão
-    $conn = new mysqli($servername, $username, $password_db, $dbname);
-
-    // Verificar conexão
-    if ($conn->connect_error) {
-        die("Conexão falhou: " . $conn->connect_error);
-    }
+    $conn = getDatabase();
 
     // Preparar a chamada ao procedimento armazenado
     $stmt = $conn->prepare("CALL inserir_recepcionista(?, ?, ?, ?, ?)");
@@ -84,10 +73,43 @@ function inserirRecepcionista($nome, $email, $telefone, $tipo, $password) {
     $stmt->close();
     $conn->close();
 }
+
+function login($email, $password) {
+    $conn = getDatabase();
+
+    // Preparar a chamada ao procedimento armazenado
+    $stmt = $conn->prepare("CALL login(?, ?)");
+    $stmt->bind_param("ss", $email, $password);
+
+    // Executar a consulta
+    if ($stmt->execute()) {
+        // Pega o resultado da consulta
+        $result = $stmt->get_result();
+
+        // Verifica se há algum resultado (login bem-sucedido)
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            $id = $row['id'];
+            $nome = $row['nome'];
+
+            session_start();
+            $_SESSION['id'] = $id;
+            $_SESSION['nome'] = $nome;
+
+            header("location: ../perfil.php");
+        } else {
+            // Login falhou
+            header("location: ../login.php?res=false");
+        }
+    } else {
+        // Se a execução falhar, exibe um erro
+        die("Erro ao executar o procedimento de login: " . $stmt->error);
+    }
+
+    // Fechar a consulta e a conexão
+    $stmt->close();
+    $conn->close();
+}
+
 ?>
-
-
-
-
-?>
-

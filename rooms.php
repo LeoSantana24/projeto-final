@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">Quartos</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.php">Home</a></li>
               <li>&bullet;</li>
               <li>Quartos</li>
             </ul>
@@ -269,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
           </div>
           <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+            <a href="reservation.php" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
           </div>
         </div>
       </div>

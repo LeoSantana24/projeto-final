@@ -42,11 +42,11 @@
                 <i class='bx bxs-envelope'></i>
             </div>
             <div class="input-box">
-                <input type="password"name="password" id="password" placeholder="*************" required>
+                <input type="password" name="password" id="password" placeholder="*************" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
         
-            <a href="./reservation.php" class="btn">Login</a>
+            <button type="submit" name="submit" class="btn">Login</button>
             
         </form>
         <div id="login-success" class="login-message"></div>
