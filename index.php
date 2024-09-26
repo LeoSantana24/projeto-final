@@ -55,20 +55,20 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form action="#">
+            <form action="disponibilidade-quarto.php" method="POST">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" name="checkin" id="checkin_date" class="form-control" placeholder="DD/MM/YYYY">
+                    <input type="date" name="checkin" class="form-control" placeholder="DD/MM/YYYY">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" name="checkout" id="checkout_date" class="form-control" placeholder="DD/MM/YYYY">
+                    <input type="date" name="checkout" class="form-control" placeholder="DD/MM/YYYY">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
@@ -101,7 +101,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 align-self-end">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                  <button name="submit" type="submit" class="btn btn-primary btn-block text-white">Check Availabilty</button>
                 </div>
               </div>
             </form>

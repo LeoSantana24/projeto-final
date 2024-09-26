@@ -1,3 +1,18 @@
+<?php
+
+if(isset($_GET['id-quarto'])){
+    $id = $_GET['id-quarto'];
+
+    require_once "database/setup.php";
+
+    $res = listarQuartoPorId($id);
+} else {
+    header("location: rooms.php");
+}
+
+?>
+
+
 <!DOCTYPE HTML>
 <html>
   <head>
@@ -32,11 +47,11 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">Formulário de Reserva</h1>
+            <h1 class="heading mb-3">Detalhes do quarto</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.php">Home</a></li>
               <li>&bullet;</li>
-              <li>Reserva</li>
+              <li>Quartos</li>
             </ul>
           </div>
         </div>
@@ -53,73 +68,19 @@
     <section class="section contact-section" id="next">
       <div class="container">
         <div class="row">
-          <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
-            
-            <form action="#" method="post" class="bg-white p-md-5 p-4 mb-5 border">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="checkin_date">Data entrada</label>
-                  <input type="date" name="checkin_date" class="form-control">
-                </div>
-                <div class="col-md-6 form-group">
-                  <label class="text-black font-weight-bold" for="checkout_date">Data saida</label>
-                  <input type="date" name="checkout_date" class="form-control">
-                </div>
-              </div>
+            <?php
 
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <label for="adults" class="font-weight-bold text-black">Adultos</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                    <select name="adults" id="adults" class="form-control">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4+">4+</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="children" class="font-weight-bold text-black">Children</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                    <select name="children" id="children" class="form-control">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4+">4+</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              
-
-              <div class="row mb-4">
-                <div class="col-md-12 form-group">
-                  <label class="text-black font-weight-bold" for="message">Notas</label>
-                  <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <a href="./reservas/consulta.php" class="btn btn-primary text-white py-3 px-5 font-weight-bold">Reserve Agora</a>
-                </div>
-              </div>
-            </form>
-
-          </div>
-          <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
-            <div class="row">
-              <div class="col-md-10 ml-auto contact-info">
-                <p><span class="d-block">Endereço:</span> <span class="text-black"> 98 West 21th Street, Suite 721 New York NY 10016</span></p>
-                <p><span class="d-block">Telefone:</span> <a href="tel:+2389842580"><span class="text-black"> (+238) 984 25 80</span></p>
-                <p><span class="d-block">Email:</span> <a href="mailto:info@salislandhotel.cv"><span class="text-black">info@salislandhotel.com</span></a></p>
-              </div>
-            </div>
-          </div>
+                echo '<div class="col" data-aos="fade-up" data-aos-delay="100">
+                            <img src="images/'.$res['imagem'].'" />
+                            </div>
+                            <div class="col" data-aos="fade-up" data-aos-delay="200">
+                            <div class="row">
+                                <div class="col-md-10 ml-auto contact-info">
+                                <p><span class="d-block">'.$res['titulo'].'</span> <span class="text-black">'.$res['descricao'].'</span></p>
+                                </div>
+                            </div>
+                        </div>';
+            ?>
         </div>
       </div>
     </section>

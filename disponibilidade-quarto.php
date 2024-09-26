@@ -1,9 +1,27 @@
+<?php
+
+$checkin = null;
+$checkout = null;
+$adults = null;
+$children = null;
+$quartos = null;
+if(isset($_POST["submit"])){
+  $checkin = $_POST["checkin"];
+  $checkout = $_POST["checkout"];
+  $adults = $_POST["adults"];
+  $children = $_POST["children"];
+  require_once "database/setup.php";
+  $quartos = listarDisponibilidadeQuartos();
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sal Island Hotel</title>
+    <title>Disponibilidade quarto- Sal Island Hotel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -50,6 +68,68 @@
     </section>
     <!-- END section -->
 
+    <section class="section pb-4">
+      <div class="container">
+       
+        <div class="row check-availabilty" id="next">
+          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+
+            <form action="#">
+              <div class="row">
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="icon-calendar"></span></div>
+                    <input type="date" id="checkin_date" class="form-control" <?php if($checkin != null) { echo 'value="'.$checkin.'"'; } ?>>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="icon-calendar"></span></div>
+                    <input type="date" id="checkout_date" class="form-control" <?php if($checkout != null) { echo 'value="'.$checkout.'"'; } ?>>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
+                  <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="adults" class="font-weight-bold text-black">Adults</label>
+                      <div class="field-icon-wrap">
+                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                        <select name="adults" id="adults" class="form-control" value="0">
+                            <option value="1" <?php if ($adults == "1") echo 'selected'; ?>>1</option>
+                            <option value="2" <?php if ($adults == "2") echo 'selected'; ?>>2</option>
+                            <option value="3" <?php if ($adults == "3") echo 'selected'; ?>>3</option>
+                            <option value="4" <?php if ($adults == "4") echo 'selected'; ?>>4+</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <label for="children" class="font-weight-bold text-black">Children</label>
+                      <div class="field-icon-wrap">
+                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                        <select name="children" id="children" class="form-control" value="2">
+                            <option value="0" <?php if ($children == "0") echo 'selected'; ?>>0</option>
+                            <option value="1" <?php if ($children == "1") echo 'selected'; ?>>1</option>
+                            <option value="2" <?php if ($children == "2") echo 'selected'; ?>>2</option>
+                            <option value="3" <?php if ($children == "3") echo 'selected'; ?>>3</option>
+                            <option value="4" <?php if ($children == "4") echo 'selected'; ?>>4+</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3 align-self-end">
+                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
 
     
     <section class="section">
@@ -58,20 +138,21 @@
         <div class="row">
 
           <?php
-            require_once "database/setup.php";
-            $quartos = listarQuartos();
-            foreach($quartos as $quarto){
-              echo '<div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-                      <a href="quarto-detalhes.php?id-quarto='.$quarto['id'].'" class="room">
-                        <figure class="img-wrap">
-                          <img src="images/'.$quarto['imagem'].'" alt="Free website template" class="img-fluid mb-3">
-                        </figure>
-                        <div class="p-3 text-center room-info">
-                          <h2>'.$quarto['titulo'].'</h2>
-                          <span class="text-uppercase letter-spacing-1">'.$quarto['preco'].'€</span>
-                        </div>
-                      </a>
-                    </div>';
+            if($quartos != null) {
+                foreach($quartos as $quarto){
+                    echo '<div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
+                            <figure class="img-wrap">
+                                <img src="images/'.$quarto['imagem'].'" alt="Free website template" class="img-fluid mb-3">
+                            </figure>
+                            <div class="p-3 text-center room-info">
+                                <h2>'.$quarto['titulo'].'</h2>
+                                <span class="text-uppercase letter-spacing-1">'.$quarto['preco'].'€</span>
+                            </div>
+                            <form action="" method="POST">
+                                <button class="btn btn-primary btn-block text-white">Reserva agora</button>
+                            <form/>
+                        </div>';
+                }
             }
           ?>
           

@@ -153,7 +153,7 @@ function listarQuartos() {
         $stmt->close();
         $conn->close();
 
-        return "Erro ao listar os quartos: " . $stmt->error;  // Retorna a mensagem de erro
+        return  [];
     }
 }
 
@@ -175,7 +175,7 @@ function listarQuartoPorId($id) {
         } else {
             $stmt->close();
             $conn->close();
-            return "Nenhum quarto encontrado com o ID: $id";  // Retorna mensagem se não houver resultado
+            return null;
         }
     } else {
         $stmt->close();
@@ -184,6 +184,33 @@ function listarQuartoPorId($id) {
     }
 }
 
+
+
+function listarDisponibilidadeQuartos() {
+    $conn = getDatabase();
+
+    // Preparar a chamada ao procedimento armazenado
+    $stmt = $conn->prepare("CALL listar_disponibilidade_quartos()");
+
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        $quartos = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $quartos[] = $row;  // Armazena cada quarto no array
+        }
+
+        $stmt->close();
+        $conn->close();
+
+        return $quartos;  // Retorna um array com todos os quartos
+    } else {
+        $stmt->close();
+        $conn->close();
+
+        return  [];
+    }
+}
 
 function atualizarQuarto($id, $titulo, $descricao, $imagem, $estado, $preco) {
     $conn = getDatabase();
