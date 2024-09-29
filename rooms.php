@@ -28,7 +28,7 @@
     
     <?php include "includes/header.php" ?>
 
-    <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+    <section class="site-hero inner-page overlay" style="background-image: url(images/fotos-Sal/sm.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
@@ -116,10 +116,10 @@
       <div class="container" >
         <div class="row align-items-center">
           <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-            <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
+            <h2 class="text-white font-weight-bold">O Melhor lugar para ficar. Reserve Agora!</h2>
           </div>
           <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.php" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+            <a href="reservation.php" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Agora</a>
           </div>
         </div>
       </div>

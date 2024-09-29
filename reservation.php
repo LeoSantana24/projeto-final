@@ -28,7 +28,7 @@
     
     <?php include "includes/header.php" ?>
 
-    <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+    <section class="site-hero inner-page overlay" style="background-image: url(images/fotos-Sal/sm.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
@@ -81,7 +81,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="children" class="font-weight-bold text-black">Children</label>
+                  <label for="children" class="font-weight-bold text-black">Crianças</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                     <select name="children" id="children" class="form-control">
@@ -105,7 +105,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <a href="./reservas/consulta.php" class="btn btn-primary text-white py-3 px-5 font-weight-bold">Reserve Agora</a>
+                  <a href="./reservas/consulta.php" class="btn btn-primary text-white py-3 px-5 font-weight-bold">Reserve Agora!</a>
                 </div>
               </div>
             </form>
@@ -116,7 +116,7 @@
               <div class="col-md-10 ml-auto contact-info">
                 <p><span class="d-block">Endereço:</span> <span class="text-black"> 98 West 21th Street, Suite 721 New York NY 10016</span></p>
                 <p><span class="d-block">Telefone:</span> <a href="tel:+2389842580"><span class="text-black"> (+238) 984 25 80</span></p>
-                <p><span class="d-block">Email:</span> <a href="mailto:info@salislandhotel.cv"><span class="text-black">info@salislandhotel.com</span></a></p>
+                <p><span class="d-block">Email:</span> <a href="mailto:info@salislandhotel.cv"><span class="text-black">info@salislandhotel.cv</span></a></p>
               </div>
             </div>
           </div>
@@ -212,10 +212,10 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-                <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
+                <h2 class="text-white font-weight-bold">O Melhor lugar para ficar. Reserve Agora!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-                <a href="./reservas/consulta.php" class="btn btn-outline-white-primary py-3 text-white px-5" id="reserveNowButton">Reserve Now</a>
+                <a href="./reservas/consulta.php" class="btn btn-outline-white-primary py-3 text-white px-5" id="reserveNowButton">Reserve Agora!</a>
             </div>
         </div>
     </div>

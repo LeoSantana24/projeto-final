@@ -5,6 +5,12 @@ $checkout = null;
 $adults = null;
 $children = null;
 $quartos = null;
+
+
+
+
+
+
 if(isset($_POST["submit"])){
   $checkin = $_POST["checkin"];
   $checkout = $_POST["checkout"];
