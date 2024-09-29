@@ -92,10 +92,14 @@ function login($email, $password) {
 
             $id = $row['id'];
             $nome = $row['nome'];
+            $email = $row['email'];
+            $telefone = $row['telefone'];
 
             session_start();
             $_SESSION['id'] = $id;
             $_SESSION['nome'] = $nome;
+            $_SESSION['email'] = $email;
+            $_SESSION['telefone'] = $telefone;
 
             header("location: ../perfil.php");
         } else {
@@ -230,6 +234,40 @@ function atualizarQuarto($id, $titulo, $descricao, $imagem, $estado, $preco) {
 
     return $result;  // Retorna true ou a mensagem de erro
 }
+
+function inserirReserva($conn, $id_cliente, $id_quarto, $checkin_previsto, $checkout_previsto) {
+  
+    $conn = getDatabase();
+    // Preparar a chamada do procedimento armazenado
+    $sql = "CALL InserirReserva(?, ?, ?, ?, @id_reserva)";
+    
+    // Preparar a query
+    if ($stmt = $conn->prepare($sql)) {
+        // Vincular os parâmetros à consulta (procedimento)
+        $stmt->bind_param("iiss", $id_cliente, $id_quarto, $checkin_previsto, $checkout_previsto);
+        
+        // Executar a consulta
+        if ($stmt->execute()) {
+            // Obter o valor do ID da nova reserva
+            $result = $conn->query("SELECT @id_reserva as id_reserva");
+            if ($row = $result->fetch_assoc()) {
+                $id_reserva = $row['id_reserva'];
+            }
+        } else {
+            echo "Erro ao executar a reserva: " . $stmt->error;
+        }
+        // Fechar o statement
+        $stmt->close();
+    } else {
+        echo "Erro ao preparar a consulta: " . $conn->error;
+    }
+    
+    // Retorna o ID da reserva ou 0 em caso de erro
+    return $id_reserva;
+}
+
+
+
 
 
 

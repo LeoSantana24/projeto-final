@@ -1,24 +1,59 @@
 <?php
 
+
+session_start();
+if(!isset($_SESSION['id'])){
+  header('Location: login.php');
+}
+$id = $_SESSION['id'];
+$nome = $_SESSION['nome'];
+$email = $_SESSION['email'];
+$telefone = $_SESSION['telefone'];
+
+
+
 $checkin = null;
 $checkout = null;
 $adults = null;
 $children = null;
 $quartos = null;
+$noites = 0;
 
 
 
 
 
-
-if(isset($_POST["submit"])){
-  $checkin = $_POST["checkin"];
-  $checkout = $_POST["checkout"];
-  $adults = $_POST["adults"];
-  $children = $_POST["children"];
-  require_once "database/setup.php";
-  $quartos = listarDisponibilidadeQuartos();
+if(isset($_GET["checkin"])){
+  $checkin = $_GET["checkin"];
 }
+
+if(isset($_GET["checkout"])){
+  $checkout = $_GET["checkout"];
+}
+
+if(isset($_GET["adults"])){
+  $adults = $_GET["adults"];
+}
+
+if(isset($_GET["children"])){
+  $children = $_GET["children"];
+}
+
+if($checkin != null && $checkout != null){
+  // Converte as strings de datas em objetos DateTime
+  $checkinDate = new DateTime($checkin);
+  $checkoutDate = new DateTime($checkout);
+  
+  // Calcula a diferença entre as duas datas
+  $interval = $checkinDate->diff($checkoutDate);
+  
+  // O número de noites será o intervalo de dias
+  $noites = $interval->days;
+}
+
+require_once "database/setup.php";
+$quartos = listarDisponibilidadeQuartos();
+
 
 ?>
 
@@ -143,29 +178,76 @@ if(isset($_POST["submit"])){
         
         <div class="row">
 
-          <?php
+        <?php
             if($quartos != null) {
                 foreach($quartos as $quarto){
                     echo '<div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
                             <figure class="img-wrap">
-                                <img src="images/'.$quarto['imagem'].'" alt="Free website template" class="img-fluid mb-3">
+                                <img src="images/'.$quarto['imagem'].'" alt="Quarto" class="img-fluid mb-3">
                             </figure>
                             <div class="p-3 text-center room-info">
                                 <h2>'.$quarto['titulo'].'</h2>
                                 <span class="text-uppercase letter-spacing-1">'.$quarto['preco'].'€</span>
                             </div>
-                            <form action="" method="POST">
-                                <button class="btn btn-primary btn-block text-white">Reserva agora</button>
-                            <form/>
+                            <button class="btn btn-primary btn-block text-white" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#confirmarReserva"
+                                    data-id-quarto="'.$quarto['id'].'"
+                                    data-quarto-nome="'.$quarto['titulo'].'"
+                                    data-preco-total="'.$quarto['preco'].'"
+                                    data-noites="'.$noites.'">
+                                Reserva agora
+                            </button>
                         </div>';
                 }
             }
-          ?>
+        ?>
+
           
 
         </div>
       </div>
     </section>
+
+    <div class="modal fade" id="confirmarReserva" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="reservaModalLabel">Resumo da sua reserva</h4>                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <h4>Dados Pessoais</h4>
+                <p><strong>Nome: </strong><span><?php echo $nome ?></span></p>
+                <p><strong>E-mail: </strong><span><?php echo $email ?></span></p>
+                <p><strong>Telefone: </strong><span><?php echo $telefone ?></span></p>
+              </div>
+              <div>
+                <h4>Informações do quarto</h4>
+                <p><strong>Nome do quarto: </strong><span id="quartoNome"></span></p>
+                <p><strong>Entrada: </strong><span><?php echo $checkin ?></span></p>
+                <p><strong>Saída: </strong><span><?php echo $checkout ?></span></p>
+                <p><strong>Noites: </strong><span><?php echo $noites ?> Noite</span></p>
+                <p><strong>Adultos: </strong><span><?php echo $adults ?></span></p>
+                <p><strong>Crianças: </strong><span><?php echo $children ?></span></p>
+                <hr />
+                <p style="color: green;"><strong>Preço total: </strong><span id="precoTotal"></span></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form action="database/processar_reserva.php" method="post">
+                    <input type="hidden" name="id-user" value="<?php echo $id; ?>" />
+                    <input type="hidden" name="id-quarto" value="" /> <!-- Campo oculto para o ID do quarto -->
+                    <input type="hidden" name="checkin" value="<?php echo $checkin; ?>" />
+                    <input type="hidden" name="checkout" value="<?php echo $checkout; ?>" />
+                    <button type="submit" class="btn btn-primary">Confirmar reserva</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
     
     <section class="section bg-light">
 
@@ -213,6 +295,31 @@ if(isset($_POST["submit"])){
     </section>
 
     <?php include "includes/footer.php" ?>
+
+
+    <script>
+      var confirmarReservaModal = document.getElementById('confirmarReserva');
+      confirmarReservaModal.addEventListener('show.bs.modal', function (event) {
+          // Botão que acionou o modal
+          var button = event.relatedTarget;
+
+          // Extrai as informações dos atributos data-*
+          var quartoId = button.getAttribute('data-id-quarto');
+          var quartoNome = button.getAttribute('data-quarto-nome');
+          var precoPorNoite = parseFloat(button.getAttribute('data-preco-total')); // Preço por noite
+          var noites = parseInt(button.getAttribute('data-noites')); // Número de noites
+
+          // Calcula o preço total
+          var precoTotal = precoPorNoite * noites;
+
+          // Atualiza os elementos no modal com as informações
+          confirmarReservaModal.querySelector('.modal-body #quartoNome').textContent = quartoNome;
+          confirmarReservaModal.querySelector('.modal-body #precoTotal').textContent = precoTotal.toFixed(2) + '€';
+          confirmarReservaModal.querySelector('input[name="id-quarto"]').value = quartoId;
+      });
+    </script>
+
+
     
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -231,5 +338,6 @@ if(isset($_POST["submit"])){
     
 
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

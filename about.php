@@ -23,7 +23,6 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/descubrailhadosal.css">
 
   </head>
   <body>

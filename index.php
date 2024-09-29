@@ -55,7 +55,7 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form action="disponibilidade-quarto.php" method="POST">
+            <form action="disponibilidade-quarto.php" method="GET">
               <div class="row">
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkin_date" class="font-weight-bold text-black">Data entrada</label>
@@ -101,7 +101,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 align-self-end">
-                  <button name="submit" type="submit" class="btn btn-primary btn-block text-white">Verificar disponibilidade</button>
+                  <button type="submit" class="btn btn-primary btn-block text-white">Verificar disponibilidade</button>
                 </div>
               </div>
             </form>
@@ -501,10 +501,10 @@
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Agora!</h2>
+              <h2 class="text-white font-weight-bold">O Melhor lugar para ficar. Reserve Agora!</h2>
             </div>
             <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.php" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+              <a href="reservation.php" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Agora</a>
             </div>
           </div>
         </div>
